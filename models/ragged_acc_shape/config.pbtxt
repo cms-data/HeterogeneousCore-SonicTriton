@@ -1,0 +1,53 @@
+
+name: "ragged_acc_shape"
+
+backend: "onnxruntime"
+
+max_batch_size: 4
+version_policy: { latest { num_versions: 1 }}
+input [
+  {
+    name: "RAGGED_INPUT"
+    data_type: TYPE_FP32
+    dims: [ -1 ]
+    allow_ragged_batch: true
+  }
+]
+output [
+  {
+    name: "RAGGED_OUTPUT"
+    data_type: TYPE_FP32
+    dims: [ -1 ]
+   }
+]
+output [
+  {
+    name: "BATCH_AND_SIZE_OUTPUT"
+    data_type: TYPE_FP32
+    dims: [ -1 ]
+   }
+]
+output [
+  {
+    name: "BATCH_OUTPUT"
+    data_type: TYPE_FP32
+    dims: [ -1 ]
+   }
+]
+batch_input [
+  {
+    kind: BATCH_ACCUMULATED_ELEMENT_COUNT
+    target_name: "BATCH_AND_SIZE_INPUT"
+    data_type: TYPE_FP32
+    source_input: "RAGGED_INPUT"
+  },
+  {
+    kind: BATCH_MAX_ELEMENT_COUNT_AS_SHAPE
+    target_name: "BATCH_INPUT"
+    data_type: TYPE_FP32
+    source_input: "RAGGED_INPUT"
+  }
+]
+dynamic_batching {
+  max_queue_delay_microseconds: 1000000
+}
