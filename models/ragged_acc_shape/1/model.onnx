@@ -1,50 +1,0 @@
-triton:¿
-=shape"Constant**
-value*:ÿÿÿÿÿÿÿÿÿBconst_shape 
-Oexpander_shape"Constant*3
-value*':ÿÿÿÿÿÿÿÿÿBconst_expander_shape 
-&
-RAGGED_INPUT
-shapein_mat"Reshape
-.
-BATCH_AND_SIZE_INPUT
-shapebs_mat"Reshape
-(
-BATCH_INPUT
-shape	batch_mat"Reshape
-F
-BATCH_AND_SIZE_INPUT
-BATCH_AND_SIZE_INPUToutput_expander_int"Div
-?
-output_expander_int
-expander_shapeoutput_expander"Reshape
-0
-output_expander
-in_matRAGGED_OUTPUT"MatMul
-8
-output_expander
-bs_matBATCH_AND_SIZE_OUTPUT"MatMul
-2
-output_expander
-	batch_matBATCH_OUTPUT"MatMulonnx_batch_inputZ
-RAGGED_INPUT
-	
-var_0Z'
-BATCH_AND_SIZE_INPUT
-	
-var_0Z
-BATCH_INPUT
-	
-var_0b)
-RAGGED_OUTPUT
-
-var_1
-var_2b1
-BATCH_AND_SIZE_OUTPUT
-
-var_3
-var_4b(
-BATCH_OUTPUT
-
-var_5
-var_6B

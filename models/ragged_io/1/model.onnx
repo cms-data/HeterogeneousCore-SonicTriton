@@ -1,0 +1,9 @@
+triton:q
+
+INPUT0OUTPUT0"Identityonnx_nobatch_zero_1_float32Z
+INPUT0
+	
+var_0b
+OUTPUT0
+	
+var_1B
