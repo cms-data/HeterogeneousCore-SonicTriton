@@ -1,0 +1,29 @@
+
+name: "ragged_io"
+platform: "onnxruntime_onnx"
+max_batch_size: 4
+version_policy: { latest { num_versions: 1 }}
+input [
+  {
+    name: "INPUT0"
+    allow_ragged_batch: true
+    data_type: TYPE_FP32
+    dims: [ -1 ]
+    
+  }
+]
+output [
+  {
+    name: "OUTPUT0"
+    data_type: TYPE_FP32
+    dims: [ -1 ]
+  }
+]
+batch_output [
+  {
+    target_name: "OUTPUT0"
+    kind: BATCH_SCATTER_WITH_INPUT_SHAPE
+    source_input: "INPUT0"
+  }
+]
+dynamic_batching { max_queue_delay_microseconds: 1000000 }
