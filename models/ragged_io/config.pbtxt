@@ -1,29 +1,35 @@
-
 name: "ragged_io"
 platform: "onnxruntime_onnx"
+version_policy {
+  latest {
+    num_versions: 1
+  }
+}
 max_batch_size: 4
-version_policy: { latest { num_versions: 1 }}
-input [
-  {
-    name: "INPUT0"
-    allow_ragged_batch: true
-    data_type: TYPE_FP32
-    dims: [ -1 ]
-    
-  }
-]
-output [
-  {
-    name: "OUTPUT0"
-    data_type: TYPE_FP32
-    dims: [ -1 ]
-  }
-]
-batch_output [
-  {
-    target_name: "OUTPUT0"
-    kind: BATCH_SCATTER_WITH_INPUT_SHAPE
-    source_input: "INPUT0"
-  }
-]
-dynamic_batching { max_queue_delay_microseconds: 1000000 }
+input [{
+  name: "INPUT0"
+  data_type: TYPE_FP32
+  dims: [-1]
+  allow_ragged_batch: true
+}]
+output [{
+  name: "OUTPUT0"
+  data_type: TYPE_FP32
+  dims: [-1]
+}]
+dynamic_batching {
+  max_queue_delay_microseconds: 1000000
+}
+batch_output [{
+  target_name: ["OUTPUT0"]
+  source_input: ["INPUT0"]
+}]
+model_repository_agents {
+  agents [{
+    name: "checksum"
+    parameters {
+      key: "MD5:1/model.onnx"
+      value: "2b69fedb92d0a1440e0068dfc31cd10c"
+    }
+  }]
+}
