@@ -1,22 +1,25 @@
 name: "gat_test"
 platform: "pytorch_libtorch"
-max_batch_size: 0
-input [
-  {
-    name: "x__0"
-    data_type: TYPE_FP32
-    dims: [ -1, 1433 ]
-  },
-  {
-    name: "edgeindex__1"
-    data_type: TYPE_INT64
-    dims: [ 2, -1 ]
-  }
-]
-output [
-  {
-    name: "logits__0"
-    data_type: TYPE_FP32
-    dims: [ -1, 7 ]
-  }
-]
+input [{
+  name: "x__0"
+  data_type: TYPE_FP32
+  dims: [-1, 1433]
+}, {
+  name: "edgeindex__1"
+  data_type: TYPE_INT64
+  dims: [2, -1]
+}]
+output [{
+  name: "logits__0"
+  data_type: TYPE_FP32
+  dims: [-1, 7]
+}]
+model_repository_agents {
+  agents [{
+    name: "checksum"
+    parameters {
+      key: "MD5:1/model.pt"
+      value: "2a887a7f45f6083b08b260158e559f95"
+    }
+  }]
+}
