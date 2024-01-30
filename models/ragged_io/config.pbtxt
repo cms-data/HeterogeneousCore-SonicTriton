@@ -29,7 +29,7 @@ model_repository_agents {
     name: "checksum"
     parameters {
       key: "MD5:1/model.onnx"
-      value: "2b69fedb92d0a1440e0068dfc31cd10c"
+      value: "2b69fedb92d0a1440e0068dfc31cd10ca"
     }
   }]
 }
